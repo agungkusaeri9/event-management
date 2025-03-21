@@ -29,4 +29,9 @@ class Event extends Model
 
         }
     }
+
+    public function scopeIsOpen($query)
+    {
+        return $query->where('status', 1);
+    }
 }
