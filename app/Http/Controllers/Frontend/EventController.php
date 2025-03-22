@@ -10,13 +10,14 @@ class EventController extends Controller
 {
     public function index()
     {
-        $items = Event::isOpen()->latest()->paginate(10);
+        $items = Event::isOpen()->latest()->paginate(5);
         return view('frontend.pages.event.index', compact('items'));
     }
 
-    public function show()
+    public function show($slug)
     {
+        $item = Event::isOpen()->where('slug', $slug)->firstOrFail();
         $title = 'Detail Event';
-        return view('frontend.pages.event.show', compact('title'));
+        return view('frontend.pages.event.show', compact('title', 'item'));
     }
 }

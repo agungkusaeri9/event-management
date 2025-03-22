@@ -45,6 +45,16 @@
                             @enderror
                         </div>
                         <div class='form-group mb-3'>
+                            <label for='address' class='mb-2'>Address</label>
+                            <textarea name='address' id='address' cols='30' rows='3'
+                                class='form-control @error('address') is-invalid @enderror'>{{ $item->address ?? old('address') }}</textarea>
+                            @error('address')
+                                <div class='invalid-feedback'>
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
+                        <div class='form-group mb-3'>
                             <label for='phone_number' class='mb-2'>Phone Number</label>
                             <input type='text' name='phone_number' id='phone_number'
                                 class='form-control @error('phone_number') is-invalid @enderror'
@@ -67,18 +77,18 @@
                             @enderror
                         </div>
                         <div class='form-group mb-3'>
-                            <label for='facebook' class='mb-2'>Facebook</label>
-                            <input type='text' name='facebook' id='facebook'
-                                class='form-control @error('facebook') is-invalid @enderror'
-                                value='{{ $item->facebook ?? old('facebook') }}'>
-                            @error('facebook')
+                            <label for='youtube' class='mb-2'>Link Youtube</label>
+                            <input type='text' name='youtube' id='youtube'
+                                class='form-control @error('youtube') is-invalid @enderror'
+                                value='{{ $item->youtube ?? old('youtube') }}'>
+                            @error('youtube')
                                 <div class='invalid-feedback'>
                                     {{ $message }}
                                 </div>
                             @enderror
                         </div>
                         <div class='form-group mb-3'>
-                            <label for='instagram' class='mb-2'>Instagram</label>
+                            <label for='instagram' class='mb-2'>Link Instagram</label>
                             <input type='text' name='instagram' id='instagram'
                                 class='form-control @error('instagram') is-invalid @enderror'
                                 value='{{ $item->instagram ?? old('instagram') }}'>

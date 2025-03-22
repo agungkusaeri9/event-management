@@ -20,7 +20,11 @@ Route::name('frontend.')->group(function () {
     Route::get('/events', [App\Http\Controllers\Frontend\EventController::class, 'index'])->name('event.index');
     Route::get('/events/{slug}', [App\Http\Controllers\Frontend\EventController::class, 'show'])->name('event.show');
     Route::get('/faq', [App\Http\Controllers\Frontend\FaqController::class, 'index'])->name('faq.index');
-
+    Route::get('/about', [App\Http\Controllers\Frontend\AboutController::class, 'index'])->name('about');
+    Route::get('/registration', [App\Http\Controllers\Frontend\RegistrationController::class, 'index'])->name('registration');
+    Route::post('/registration/step2', [App\Http\Controllers\Frontend\RegistrationController::class, 'step2'])->name('registration.step2');
+    Route::post('/registration/step3', [App\Http\Controllers\Frontend\RegistrationController::class, 'step3'])->name('registration.step3');
+    Route::post('/registration/step4', [App\Http\Controllers\Frontend\RegistrationController::class, 'step4'])->name('registration.step4');
 });
 
 

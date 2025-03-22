@@ -58,8 +58,8 @@
                             @enderror
                         </div>
                         <div class='form-group mb-3'>
-                            <label for='date' class='mb-2'>Date</label>
-                            <input type='text' name='date' id='date'
+                            <label for='date' class='mb-2'>Start Date Time</label>
+                            <input type='datetime-local' name='date' id='date'
                                 class='form-control @error('date') is-invalid @enderror'
                                 value='{{ $item->date->translatedFormat('Y-m-d H:i:s') ?? old('date') }}'>
                             @error('date')
@@ -69,8 +69,19 @@
                             @enderror
                         </div>
                         <div class='form-group mb-3'>
+                            <label for='end_date' class='mb-2'>End Date Time</label>
+                            <input type='datetime-local' name='end_date' id='end_date'
+                                class='form-control @error('end_date') is-invalid @enderror'
+                                value='{{ $item->end_date ? $item->end_date->translatedFormat('Y-m-d H:i:s') : old('end_date') }}'>
+                            @error('end_date')
+                                <div class='invalid-feedback'>
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
+                        <div class='form-group mb-3'>
                             <label for='fee' class='mb-2'>Fee</label>
-                            <input type='text' name='fee' id='fee'
+                            <input type='number' name='fee' id='fee'
                                 class='form-control @error('fee') is-invalid @enderror'
                                 value='{{ $item->fee ?? old('fee') }}'>
                             @error('fee')
@@ -100,7 +111,16 @@
                                 </div>
                             @enderror
                         </div>
-
+                        <div class='form-group mb-3'>
+                            <label for='fee_description' class='mb-2'>Participant Fee</label>
+                            <textarea name='fee_description' id='fee_description' cols='30' rows='3'
+                                class='form-control @error('fee_description') is-invalid @enderror'>{{ $item->fee_description ?? old('fee_description') }}</textarea>
+                            @error('fee_description')
+                                <div class='invalid-feedback'>
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
                         <div class='form-group'>
                             <label for='status'>Status</label>
                             <select name='status' id='status'
@@ -125,4 +145,26 @@
             </x-section-card>
         </x-section-body>
     </x-section>
+
+    @push('styles')
+        <link href="https://cdn.jsdelivr.net/npm/summernote@0.9.0/dist/summernote.min.css" rel="stylesheet">
+        <script src="https://cdn.jsdelivr.net/npm/summernote@0.9.0/dist/summernote.min.js"></script>
+    @endpush
+    @push('scripts')
+        <script>
+            $(document).ready(function() {
+                $('#description').summernote({
+                    height: 300
+                });
+                $('#terms').summernote({
+                    height: 300
+
+                });
+                $('#fee_description').summernote({
+                    height: 300
+
+                });
+            });
+        </script>
+    @endpush
 </x-main-layout>

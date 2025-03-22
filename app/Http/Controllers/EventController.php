@@ -19,10 +19,8 @@ class EventController extends Controller
     }
     public function create()
     {
-        $items = Event::orderBy('name')->get();
         return view('pages.event.create', [
-            'title' => 'Create Events',
-            'items' => $items,
+            'title' => 'Create Events'
         ]);
     }
 
@@ -33,6 +31,7 @@ class EventController extends Controller
             'location' => ['required'],
             'pic' => ['required'],
             'date' => ['required'],
+            'end_date' => ['required'],
             'fee' => ['required'],
             'description' => ['required'],
             'terms' => ['required'],
@@ -43,6 +42,7 @@ class EventController extends Controller
         try {
             $data = request()->all();
             $data['image'] = request()->file('image')->store('events', 'public');
+            $data['slug'] = \Str::slug(request('name'));
             Event::create($data);
             DB::commit();
             return redirect()->route('events.index')->with('success', 'Event created successfully');
@@ -68,6 +68,7 @@ class EventController extends Controller
             'location' => ['required'],
             'pic' => ['required'],
             'date' => ['required'],
+            'end_date' => ['required'],
             'fee' => ['required'],
             'description' => ['required'],
             'terms' => ['required'],
@@ -83,6 +84,7 @@ class EventController extends Controller
                 Storage::disk('public')->delete($item->image);
                 $data['image'] = request()->file('image')->store('events', 'public');
             }
+            $data['slug'] = \Str::slug(request('name'));
             $item->update($data);
             DB::commit();
             return redirect()->route('events.index')->with('success', 'Event updated successfully');

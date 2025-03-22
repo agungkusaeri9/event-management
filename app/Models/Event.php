@@ -11,6 +11,7 @@ class Event extends Model
 
     protected $casts = [
         'date' => 'datetime',
+        'end_date' => 'datetime'
     ];
 
     public function image()
@@ -34,4 +35,37 @@ class Event extends Model
     {
         return $query->where('status', 1);
     }
+
+    public function formatDate()
+    {
+
+        if ($this->date && $this->end_date) {
+            if ($this->date->translatedFormat('d') === $this->end_date->translatedFormat('d')) {
+                return $this->date->translatedFormat('l, d F Y H:i:s') . ' - ' . $this->end_date->translatedFormat('H:i:s');
+            } else {
+                return $this->date->translatedFormat('l, d F Y H:i:s') . ' - ' . $this->end_date->translatedFormat('l, d F H:i:s');
+            }
+        }
+
+    }
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::creating(function ($model) {
+            $model->slug = \Str::slug($model->name);
+        });
+
+        static::updating(function ($model) {
+            $model->slug = \Str::slug($model->name);
+        });
+    }
+
+    public function feeFormat()
+    {
+        return number_format($this->fee, 0, '.', '.');
+    }
+
+
 }

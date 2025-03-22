@@ -19,12 +19,11 @@
 
     <div class="mt-10">
         <div class="w-full border-15 rounded-lg">
-            <img src="{{ asset('assets/img/example-image.jpg') }}" alt=""
-                class=" rounded-lg w-full object-cover h-[330px]">
+            <img src="{{ $item->image() }}" alt="" class=" rounded-lg w-full object-cover h-[330px]">
         </div>
         <div class="flex flex-row justify-between mt-10">
             <div class="">
-                <h1 class="text-white text-xl font-light mb-4"> Nusantara International Folklore Festival</h1>
+                <h1 class="text-white text-xl font-light mb-4"> {{ $item->name }}</h1>
                 <p class="text-xs text-white font-light flex gap-1 mb-2">
                     <svg width="14px" height="14px" viewBox="0 0 24 24" fill="none"
                         xmlns="http://www.w3.org/2000/svg">
@@ -41,7 +40,7 @@
                             </path>
                         </g>
                     </svg>
-                    Ubud, Bali
+                    {{ $item->location }}
                 </p>
                 <p class="text-xs flex  text-white font-light gap-1 mb-5">
                     <svg width="14px" height="14px" viewBox="0 0 24 24" fill="none"
@@ -55,30 +54,25 @@
                             </path>
                         </g>
                     </svg>
-                    January 10-15, 2025. 20.00 - 21.56
+                    {{ $item->formatDate() }}
                 </p>
             </div>
             <div class="bg-white rounded-xl p-5 text-center w-60">
                 <h2 class="text-xs text-gray-500">Participation Fee</h2>
-                <div class="text-sm text-gray-800">IDR 1.200.000/pax</div>
-                <a href=""
+                <div class="text-sm text-gray-800">IDR {{ $item->feeFormat() }}/pax</div>
+                <a href="{{ route('frontend.registration', [
+                    'slug' => $item->slug,
+                    'step' => 1,
+                ]) }}"
                     class="text-xs bg-[#001A3D] px-4 w-full py-2 text-center rounded-lg text-white block mt-5">Register
                     Now</a>
             </div>
         </div>
         <div>
             <h2 class="text-white mb-3">Event Information</h2>
-            <p class="text-white  text-xs font-light">Come and enjoy the outstanding atmosphere of the folklore festival
-                with us -
-                a
-                magical blend of a
-                colourful culture, friendly people, stunning nature of the island of BALI
-                Calling all dance and music groups to join us for an unforgettable celebration of culture, creativity
-                and camaradirie.
-                The festival purpose is to present the cultural tradition of different countries and to provide an
-                opportunity for the members of groups to get together, to establish friendships and culture presentation
-                through dance and music, so this is a non competitive festival
-            </p>
+            <div class="mb-2 text-white dark:text-white text-xs">
+                {!! $item->description !!}
+            </div>
         </div>
 
 
@@ -98,16 +92,13 @@
             </h2>
             <div id="accordion-collapse2-body-2" class="hidden" aria-labelledby="accordion-collapse2-heading-2">
                 <div class="p-5 border border-b-0 border-gray-200">
-                    <p class="mb-2 text-gray-500 dark:text-gray-400">Lorem, ipsum dolor sit amet consectetur adipisicing
-                        elit. Voluptates debitis odit excepturi ullam, voluptatem perferendis? Ex voluptatem iure,
-                        commodi facere, odit praesentium blanditiis perferendis, repellendus sint ipsa dignissimos
-                        saepe! Aperiam pariatur ullam excepturi exercitationem quam assumenda repellat dolorum
-                        voluptates perspiciatis.</p>
+                    <p class="mb-2 text-gray-500 dark:text-gray-400">
+                        {!! $item->terms !!}
+                    </p>
 
                 </div>
             </div>
         </div>
-
         <div id="accordion-collapse" data-accordion="collapse" class="mt-5 bg-white">
             <h2 id="accordion-collapse-heading-2">
                 <button type="button"
@@ -124,16 +115,19 @@
             </h2>
             <div id="accordion-collapse-body-2" class="hidden" aria-labelledby="accordion-collapse-heading-2">
                 <div class="p-5 border border-b-0 border-gray-200">
-                    <p class="mb-2 text-gray-500 dark:text-gray-400">Lorem, ipsum dolor sit amet consectetur
-                        adipisicing
-                        elit. Voluptates debitis odit excepturi ullam, voluptatem perferendis? Ex voluptatem iure,
-                        commodi facere, odit praesentium blanditiis perferendis, repellendus sint ipsa dignissimos
-                        saepe! Aperiam pariatur ullam excepturi exercitationem quam assumenda repellat dolorum
-                        voluptates perspiciatis.</p>
+                    <p class="mb-2 text-gray-500 dark:text-gray-400">
+                        {!! $item->fee_description !!}
+                    </p>
 
                 </div>
             </div>
         </div>
-
     </div>
+    @push('styles')
+        <style>
+            .description {
+                color: white !important;
+            }
+        </style>
+    @endpush
 </x-frontend.main-layout>
