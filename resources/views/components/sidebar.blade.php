@@ -15,6 +15,10 @@
                  <a class="nav-link" href="{{ route('events.index') }}"><i class="fas fa-folder"></i>
                      <span>Events</span></a>
              </li>
+             <li>
+                 <a class="nav-link" href="{{ route('previous-events.index') }}"><i class="fas fa-folder"></i>
+                     <span>Previous Events</span></a>
+             </li>
              <li class="dropdown">
                  <a href="#" class="nav-link has-dropdown"><i class="fas fa-th-large"></i>
                      <span>Master</span></a>

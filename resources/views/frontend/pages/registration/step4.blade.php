@@ -20,31 +20,33 @@
         <h1 class="text-xl font-bold text-white">Registration Summary</h1>
     </div>
 
-    <form action="{{ route('frontend.registration.step4') }}" method="post">
-        @csrf
-        <div class="flex w-1/3 border-4 border-white justify-center">
-            <div>
-                <h2 class="text-white text-lg mb-3 font-normal">Event Details</h2>
-                <div class="flex gap-4 w-full">
-                    <div class="w-1/3">
-                        <img src="{{ asset('assets/img/example-image.jpg') }}" class="h-12 w-full" alt="">
+    <div class="flex w-1/2 justify-center border-white">
+        <form action="{{ route('frontend.registration.step4') }}" method="post">
+            @csrf
+            <div class="flex w-fullborder-4  justify-center">
+                <div>
+                    <h2 class="text-white text-lg mb-3 font-normal">Event Details</h2>
+                    <div class="flex gap-4 w-full">
+                        <div class="w-1/3">
+                            <img src="{{ asset('assets/img/example-image.jpg') }}" class="h-12 w-full" alt="">
+                        </div>
+                        <div>
+                            <h2 class="text-white">Event Name</h2>
+                            <p class="text-xs text-white">Location</p>
+                            <p class="text-xs text-white">Waktu</p>
+                        </div>
+                        <div class="border-t border-white border-4 h-2"></div>
                     </div>
-                    <div>
-                        <h2 class="text-white">Event Name</h2>
-                        <p class="text-xs text-white">Location</p>
-                        <p class="text-xs text-white">Waktu</p>
-                    </div>
-                    <div class="border-t border-white border-4 h-2"></div>
+                </div>
+            </div>••••
+            <div class="flex flex-row gap-4 mb-4 justify-end items-center">
+                <div>
+                    <button type="submit" class="bg-gray-500 px-10 py-3 text-white rounded-lg cursor-pointer">Next
+                        Section</button>
                 </div>
             </div>
-        </div>
-        <div class="flex flex-row gap-4 mb-4 justify-end items-center">
-            <div>
-                <button type="submit" class="bg-gray-500 px-10 py-3 text-white rounded-lg cursor-pointer">Next
-                    Section</button>
-            </div>
-        </div>
-    </form>
+        </form>
+    </div>
     @push('scripts')
         <script>
             const dataFromServer = {!! json_encode($reqJson) !!};

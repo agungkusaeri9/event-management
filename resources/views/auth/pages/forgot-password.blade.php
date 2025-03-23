@@ -19,7 +19,7 @@
                     <div class="w-75">
                         <div class="mb-5 text-center">
                             <h2>Welcome to <br> Ardhanari Dharma Chitta Website</h2>
-                            <h5>Login</h5>
+                            <h5>Foorgot Password</h5>
                         </div>
 
                         <form action="{{ route('login.process') }}" method="POST">
@@ -33,18 +33,8 @@
                                 @enderror
                             </div>
 
-                            <div class='form-group mb-3'>
-                                <label for='password' class='mb-2'>Password</label>
-                                <input type='password' name='password' id='password'
-                                    class='form-control @error('password') is-invalid @enderror'>
-                                @error('password')
-                                    <div class='invalid-feedback'>{{ $message }}</div>
-                                @enderror
-                            </div>
-                            <a href="{{ route('forgot-password') }}">Forgot Password?</a>
-
                             <div class='form-group mb-3 text-center'>
-                                <button class="btn btn-black rounded px-5 py-2">Login</button>
+                                <button class="btn btn-black rounded px-5 py-2">Send Email Verification</button>
                             </div>
                         </form>
 

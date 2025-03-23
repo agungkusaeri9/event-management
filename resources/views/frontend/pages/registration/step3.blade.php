@@ -24,10 +24,10 @@
         @csrf
         <div class="flex flex-row gap-2 mb-4">
             <div class="w-1/2">
-                <label for="type_performance" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Type
+                <label for="type_performance" class="block mb-2 text-sm font-medium text-white dark:text-white">Type
                     Of Performance</label>
                 <input type="text" id="type_performance" name="type_performance"
-                    class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-white dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    class="bg-white border border-gray-300 text-black text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-white dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     required />
                 @error('type_performance')
                     <p class="text-red-400 text-xs mt-3">{{ $message }}</p>
@@ -37,20 +37,20 @@
         <div class="flex flex-row gap-2 mb-4">
             <div class="w-1/2">
                 <label for="name_performance"
-                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Name/Title of
+                    class="block mb-2 text-sm font-medium text-white dark:text-white">Name/Title of
                     Performance</label>
                 <input type="text" id="name_performance" name="name_performance"
-                    class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-white dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    class="bg-white border border-gray-300 text-black text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-white dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     required />
                 @error('name_performance')
                     <p class="text-red-400 text-xs mt-3">{{ $message }}</p>
                 @enderror
             </div>
             <div>
-                <label for="time_performance" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Time
+                <label for="time_performance" class="block mb-2 text-sm font-medium text-white dark:text-white">Time
                     of Perfomance (minutes)</label>
                 <input type="text" id="time_performance" name="time_performance"
-                    class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-white dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    class="bg-white border border-gray-300 text-black text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-white dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     required />
                 @error('time_performance')
                     <p class="text-red-400 text-xs mt-3">{{ $message }}</p>
@@ -60,10 +60,10 @@
         </div>
         <div class="flex flex-row gap-2 mb-4">
             <div class="w-1/2">
-                <label for="type_music" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Type
+                <label for="type_music" class="block mb-2 text-sm font-medium text-white dark:text-white">Type
                     Of Music</label>
                 <input type="text" id="type_music" name="type_music"
-                    class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-white dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    class="bg-white border border-gray-300 text-black text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-white dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     required />
                 @error('type_music')
                     <p class="text-red-400 text-xs mt-3">{{ $message }}</p>
@@ -72,10 +72,10 @@
         </div>
         <div class="flex flex-row gap-2 mb-4">
             <div class="">
-                <label for="number_performance"
-                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Number of Perfomances</label>
+                <label for="number_performance" class="block mb-2 text-sm font-medium text-white dark:text-white">Number
+                    of Perfomances</label>
                 <input type="text" id="number_performance" name="number_performance"
-                    class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-white dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    class="bg-white border border-gray-300 text-black text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-white dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     required />
                 @error('number_performance')
                     <p class="text-red-400 text-xs mt-3">{{ $message }}</p>

@@ -8,6 +8,7 @@ use App\Http\Controllers\FaqController;
 use App\Http\Controllers\Frontend\HomeController;
 use App\Http\Controllers\PaymentMethodController;
 use App\Http\Controllers\PermissionController;
+use App\Http\Controllers\PreviousEventController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
@@ -25,12 +26,27 @@ Route::name('frontend.')->group(function () {
     Route::post('/registration/step2', [App\Http\Controllers\Frontend\RegistrationController::class, 'step2'])->name('registration.step2');
     Route::post('/registration/step3', [App\Http\Controllers\Frontend\RegistrationController::class, 'step3'])->name('registration.step3');
     Route::post('/registration/step4', [App\Http\Controllers\Frontend\RegistrationController::class, 'step4'])->name('registration.step4');
+
+
+
+    Route::prefix('user')->middleware('auth')->group(function () {
+        Route::get('/profile', [App\Http\Controllers\Frontend\ProfileController::class, 'index'])->name('profile.index');
+        Route::patch('/profile', [App\Http\Controllers\Frontend\ProfileController::class, 'update'])->name('profile.update');
+    });
+
 });
 
 
 Route::get('login', [AuthController::class, 'login'])->name('login')->middleware('guest');
 Route::post('login', [AuthController::class, 'login_process'])->name('login.process');
 Route::post('logout', [AuthController::class, 'logout'])->name('logout')->middleware('auth');
+
+Route::get('register', [AuthController::class, 'register'])->name('register')->middleware('guest');
+Route::post('register', [AuthController::class, 'register_process'])->name('register.process')->middleware('guest');
+
+Route::get('forgot-password', [AuthController::class, 'forgot_password'])->name('forgot-password')->middleware('guest');
+
+
 
 Route::prefix('dashboard')->middleware('auth')->group(function () {
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
@@ -45,5 +61,6 @@ Route::prefix('dashboard')->middleware('auth')->group(function () {
     Route::get('company-profile', [CompanyProfileController::class, 'index'])->name('company-profile.index');
     Route::post('company-profile', [CompanyProfileController::class, 'update'])->name('company-profile.update');
     Route::resource('payment-methods', PaymentMethodController::class);
+    Route::resource('previous-events', PreviousEventController::class);
 
 });

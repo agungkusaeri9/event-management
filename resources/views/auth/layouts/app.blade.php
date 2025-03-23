@@ -19,12 +19,23 @@
     <link rel="stylesheet" href="{{ asset('assets') }}/modules/izitoast/css/iziToast.min.css">
     <!-- JS Libraies -->
     <script src="{{ asset('assets') }}/modules/izitoast/js/iziToast.min.js"></script>
+    <style>
+        .btn-black {
+            background-color: #000;
+            color: #fff;
+        }
+
+        .btn-black:hover {
+            background-color: #000 !important;
+            color: #fff;
+        }
+    </style>
     @stack('styles')
     @vite(['resources/js/app.js'])
 </head>
 
 <body>
-    <div id="app">
+    <div>
         @yield('content')
     </div>
 

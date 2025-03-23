@@ -26,19 +26,18 @@
         <input type="text" id="qty" name="qty" hidden class="text-black" value="1">
         <div class="flex flex-row gap-2 mb-4">
             <div class="">
-                <label for="country"
-                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Country</label>
+                <label for="country" class="block mb-2 text-sm font-medium text-white dark:text-white">Country</label>
                 <input type="text" id="country" name="country"
-                    class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-white dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    class="bg-white border border-gray-300 text-black text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-white dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     required />
                 @error('country')
                     <p class="text-red-400 text-xs mt-3">{{ $message }}</p>
                 @enderror
             </div>
             <div>
-                <label for="city" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">City</label>
+                <label for="city" class="block mb-2 text-sm font-medium text-white dark:text-white">City</label>
                 <input type="text" id="city" name="city"
-                    class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-white dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    class="bg-white border border-gray-300 text-black text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-white dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     required />
                 @error('city')
                     <p class="text-red-400 text-xs mt-3">{{ $message }}</p>
@@ -47,20 +46,19 @@
         </div>
         <div class="flex flex-row gap-4 mb-4">
             <div class="w-1/2">
-                <label for="address"
-                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Address</label>
+                <label for="address" class="block mb-2 text-sm font-medium text-white dark:text-white">Address</label>
                 <input type="text" id="address" name="address"
-                    class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-white dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    class="bg-white border border-gray-300 text-black text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-white dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     required />
                 @error('address')
                     <p class="text-red-400 text-xs mt-3">{{ $message }}</p>
                 @enderror
             </div>
             <div>
-                <label for="postal_code" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Postal
+                <label for="postal_code" class="block mb-2 text-sm font-medium text-white dark:text-white">Postal
                     Code</label>
                 <input type="text" id="postal_code" name="postal_code"
-                    class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-white dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    class="bg-white border border-gray-300 text-black text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-white dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     required />
                 @error('postal_code')
                     <p class="text-red-400 text-xs mt-3">{{ $message }}</p>
@@ -70,30 +68,30 @@
         <div class="flex flex-row gap-2 mb-4">
             <div class="">
                 <label for="phone_number"
-                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Telephon/Phone Number</label>
+                    class="block mb-2 text-sm font-medium text-white dark:text-white">Telephon/Phone Number</label>
                 <input type="text" id="phone_number" name="phone_number"
-                    class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-white dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    class="bg-white border border-gray-300 text-black text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-white dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     required />
                 @error('phone_number')
                     <p class="text-red-400 text-xs mt-3">{{ $message }}</p>
                 @enderror
             </div>
             <div>
-                <label for="website" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Website (if
+                <label for="website" class="block mb-2 text-sm font-medium text-white dark:text-white">Website (if
                     any)</label>
                 <input type="text" id="website" name="website"
-                    class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-white dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    class="bg-white border border-gray-300 text-black text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-white dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     required />
                 @error('website')
                     <p class="text-red-400 text-xs mt-3">{{ $message }}</p>
                 @enderror
             </div>
             <div class="ml-1">
-                <label for="instagram" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Instagram
+                <label for="instagram" class="block mb-2 text-sm font-medium text-white dark:text-white">Instagram
                     (if
                     any)</label>
                 <input type="text" id="instagram" name="instagram"
-                    class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-white dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    class="bg-white border border-gray-300 text-black text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-white dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     required />
                 @error('instagram')
                     <p class="text-red-400 text-xs mt-3">{{ $message }}</p>
@@ -102,11 +100,11 @@
         </div>
         <div class="flex flex-row gap-4 mb-4">
             <div class="w-1/2">
-                <label for="name_in_certificate"
-                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">The name that you want to be
+                <label for="name_in_certificate" class="block mb-2 text-sm font-medium text-white dark:text-white">The
+                    name that you want to be
                     written on the Acceptance Letter and on Certificate</label>
                 <input type="text" id="name_in_certificate" name="name_in_certificate"
-                    class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-white dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    class="bg-white border border-gray-300 text-black text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-white dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     required />
                 @error('name_in_certificate')
                     <p class="text-red-400 text-xs mt-3">{{ $message }}</p>
