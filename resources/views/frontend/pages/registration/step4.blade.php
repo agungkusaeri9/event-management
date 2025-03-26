@@ -38,7 +38,7 @@
                         <div class="border-t border-white border-4 h-2"></div>
                     </div>
                 </div>
-            </div>••••
+            </div>
             <div class="flex flex-row gap-4 mb-4 justify-end items-center">
                 <div>
                     <button type="submit" class="bg-gray-500 px-10 py-3 text-white rounded-lg cursor-pointer">Next
