@@ -12,6 +12,10 @@
                      <span>Dashboard</span></a>
              </li>
              <li>
+                 <a class="nav-link" href="{{ route('registration-events.index') }}"><i class="fas fa-folder"></i>
+                     <span>Registration</span></a>
+             </li>
+             <li>
                  <a class="nav-link" href="{{ route('events.index') }}"><i class="fas fa-folder"></i>
                      <span>Events</span></a>
              </li>

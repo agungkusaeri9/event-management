@@ -2,10 +2,13 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Event extends Model
 {
+    use HasFactory;
+
     protected $table = 'events';
     protected $guarded = ['id'];
 
@@ -16,7 +19,11 @@ class Event extends Model
 
     public function image()
     {
-        return asset('storage/' . $this->image);
+        if ($this->image === 'default') {
+            return asset('assets/img/example-image.jpg');
+        } else {
+            return asset('storage/' . $this->image);
+        }
     }
 
     public function status()
@@ -27,7 +34,6 @@ class Event extends Model
             return '<span class="badge badge-info">Open Registration</span>';
         } else {
             return '<span class="badge badge-success">Finished</span>';
-
         }
     }
 
@@ -46,7 +52,6 @@ class Event extends Model
                 return $this->date->translatedFormat('l, d F Y H:i:s') . ' - ' . $this->end_date->translatedFormat('l, d F H:i:s');
             }
         }
-
     }
 
     protected static function boot()
@@ -66,6 +71,4 @@ class Event extends Model
     {
         return number_format($this->fee, 0, '.', '.');
     }
-
-
 }

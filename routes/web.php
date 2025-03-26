@@ -10,6 +10,7 @@ use App\Http\Controllers\PaymentMethodController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\PreviousEventController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\RegistrationEventController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -33,7 +34,6 @@ Route::name('frontend.')->group(function () {
         Route::get('/profile', [App\Http\Controllers\Frontend\ProfileController::class, 'index'])->name('profile.index');
         Route::patch('/profile', [App\Http\Controllers\Frontend\ProfileController::class, 'update'])->name('profile.update');
     });
-
 });
 
 
@@ -62,5 +62,7 @@ Route::prefix('dashboard')->middleware('auth')->group(function () {
     Route::post('company-profile', [CompanyProfileController::class, 'update'])->name('company-profile.update');
     Route::resource('payment-methods', PaymentMethodController::class);
     Route::resource('previous-events', PreviousEventController::class);
-
+    Route::get('registration-events', [RegistrationEventController::class, 'index'])->name('registration-events.index');
+    Route::get('registration-events/update-status', [RegistrationEventController::class, 'update_status'])->name('registration-events.update-status');
+    Route::get('registration-events/{id}', [RegistrationEventController::class, 'show'])->name('registration-events.show');
 });
