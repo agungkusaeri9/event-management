@@ -15,8 +15,6 @@ use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
-
-
 Route::name('frontend.')->group(function () {
     Route::get('/', [HomeController::class, 'index'])->name('home');
     Route::get('/events', [App\Http\Controllers\Frontend\EventController::class, 'index'])->name('event.index');
@@ -24,38 +22,31 @@ Route::name('frontend.')->group(function () {
     Route::get('/faq', [App\Http\Controllers\Frontend\FaqController::class, 'index'])->name('faq.index');
     Route::get('/about', [App\Http\Controllers\Frontend\AboutController::class, 'index'])->name('about');
     Route::get('/registration', [App\Http\Controllers\Frontend\RegistrationController::class, 'index'])->name('registration');
-    Route::post('/registration/step2', [App\Http\Controllers\Frontend\RegistrationController::class, 'step2'])->name('registration.step2');
-    Route::post('/registration/step3', [App\Http\Controllers\Frontend\RegistrationController::class, 'step3'])->name('registration.step3');
-    Route::post('/registration/step4', [App\Http\Controllers\Frontend\RegistrationController::class, 'step4'])->name('registration.step4');
-
-
-
-    Route::prefix('user')->middleware('auth')->group(function () {
+    Route::prefix('user')->middleware(['auth', 'user'])->group(function () {
         Route::get('/profile', [App\Http\Controllers\Frontend\ProfileController::class, 'index'])->name('profile.index');
         Route::patch('/profile', [App\Http\Controllers\Frontend\ProfileController::class, 'update'])->name('profile.update');
+        Route::post('/registration', [App\Http\Controllers\Frontend\RegistrationController::class, 'submit'])->name('registration.submit');
     });
 });
 
+Route::middleware('guest')->group(function () {
+    Route::get('login', [AuthController::class, 'login'])->name('login');
+    Route::post('login', [AuthController::class, 'login_process'])->name('login.process');
+    Route::get('register', [AuthController::class, 'register'])->name('register');
+    Route::post('register', [AuthController::class, 'register_process'])->name('register.process');
+    Route::get('forgot-password', [AuthController::class, 'forgot_password'])->name('forgot-password');
+});
 
-Route::get('login', [AuthController::class, 'login'])->name('login')->middleware('guest');
-Route::post('login', [AuthController::class, 'login_process'])->name('login.process');
 Route::post('logout', [AuthController::class, 'logout'])->name('logout')->middleware('auth');
 
-Route::get('register', [AuthController::class, 'register'])->name('register')->middleware('guest');
-Route::post('register', [AuthController::class, 'register_process'])->name('register.process')->middleware('guest');
 
-Route::get('forgot-password', [AuthController::class, 'forgot_password'])->name('forgot-password')->middleware('guest');
-
-
-
-Route::prefix('dashboard')->middleware('auth')->group(function () {
+Route::prefix('dashboard')->middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
     Route::get('profile', [ProfileController::class, 'index'])->name('profile.index');
     Route::post('profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::resource('users', UserController::class)->except('show');
     Route::resource('permissions', PermissionController::class)->except('show');
     Route::resource('roles', RoleController::class)->except('show');
-
     Route::resource('events', EventController::class);
     Route::resource('faqs', FaqController::class);
     Route::get('company-profile', [CompanyProfileController::class, 'index'])->name('company-profile.index');
