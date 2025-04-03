@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Models\RegistrationEvent;
 use Auth;
 use Illuminate\Http\Request;
 
@@ -11,7 +12,8 @@ class ProfileController extends Controller
     public function index()
     {
         $title = 'Profile';
-        return view('frontend.pages.profile.index', compact('title'));
+        $items = RegistrationEvent::where('status', 2)->where('user_id', auth()->user()->id)->latest()->get();
+        return view('frontend.pages.profile.index', compact('title', 'items'));
     }
 
     public function update()

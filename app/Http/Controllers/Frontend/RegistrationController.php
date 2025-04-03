@@ -4,8 +4,8 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Event;
+use App\Models\Notification;
 use App\Models\RegistrationEvent;
-use Illuminate\Http\Request;
 
 class RegistrationController extends Controller
 {
@@ -42,10 +42,60 @@ class RegistrationController extends Controller
         try {
             $data = request()->all();
             $data['user_id'] = auth()->user()->id ?? null;
-            RegistrationEvent::create($data);
-            return redirect()->back()->with('success', 'Event Registered Successfully.');
+
+            $event = Event::findOrFail($data['event_id']);
+            $data['price'] = $event->fee;
+            $data['total'] = $event->fee * request('pax_total');
+            $RegistrationEvent = RegistrationEvent::create($data);
+            $data_notification = [
+                'title' => $event->name . ' Payment Infomation',
+                'description' => 'Your registration has been aproved. You can now continue to payment.',
+                'user_id' => auth()->user()->id,
+                'link' => route('frontend.registration.payment', $RegistrationEvent->id),
+                'type' => 'payment'
+            ];
+            Notification::create($data_notification);
+            return redirect()->route('frontend.registration.success')->with('success', 'Event Registered Successfully.');
         } catch (\Throwable $th) {
             throw $th;
         }
+    }
+
+    public function success()
+    {
+        return view('frontend.pages.registration.success')->with('success', 'Event Registered Successfully');
+    }
+
+    public function payment($id)
+    {
+        $registration = RegistrationEvent::with(['event'])->where('user_id', auth()->id())->where('id', $id)->firstOrFail();
+        return view('frontend.pages.registration.payment', [
+            'title' => 'Payment Confirmation',
+            'registration' => $registration
+        ]);
+    }
+
+    public function payment_submit($id)
+    {
+        request()->validate([
+            'file' => ['required', 'image']
+        ]);
+
+        $registration = RegistrationEvent::with(['event'])->where('user_id', auth()->id())->where('id', $id)->firstOrFail();
+
+        $registration->update([
+            'proof_of_payment' => request()->file('file')->store('registration', 'public'),
+            'status' => 1
+        ]);
+
+        $data_notification = [
+            'title' => $registration->event->name,
+            'description' => 'Thankyou for payment. You can now see your E-Ticket on your profile.',
+            'user_id' => auth()->user()->id,
+            'type' => 'proof of payment'
+        ];
+        Notification::create($data_notification);
+
+        return view('frontend.pages.registration.payment-success')->with('success', 'Event Registered Successfully');
     }
 }

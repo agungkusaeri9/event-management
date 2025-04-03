@@ -14,6 +14,11 @@ export default {
             fontFamily: {
                 poppins: ["Poppins", "sans-serif"],
             },
+            colors: {
+                primary: {
+                    DEFAULT: "#001A3D",
+                },
+            },
         },
     },
     plugins: [],

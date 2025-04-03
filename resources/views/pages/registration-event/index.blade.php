@@ -31,6 +31,12 @@
                                             class="btn btn-secondary btn-sm">
                                             <i class="fas fa-eye"></i>
                                         </a>
+                                        @if ($item->status == 2)
+                                            <a href="{{ route('registration-events.ticket', $item->id) }}"
+                                                class="btn btn-primary btn-sm">
+                                                <i class="fas fa-ticket-alt"></i>
+                                            </a>
+                                        @endif
                                     </td>
                                 </tr>
                             @endforeach

@@ -22,10 +22,14 @@ Route::name('frontend.')->group(function () {
     Route::get('/faq', [App\Http\Controllers\Frontend\FaqController::class, 'index'])->name('faq.index');
     Route::get('/about', [App\Http\Controllers\Frontend\AboutController::class, 'index'])->name('about');
     Route::get('/registration', [App\Http\Controllers\Frontend\RegistrationController::class, 'index'])->name('registration');
-    Route::prefix('user')->middleware(['auth', 'user'])->group(function () {
+    Route::prefix('user')->middleware(['auth'])->group(function () {
         Route::get('/profile', [App\Http\Controllers\Frontend\ProfileController::class, 'index'])->name('profile.index');
         Route::patch('/profile', [App\Http\Controllers\Frontend\ProfileController::class, 'update'])->name('profile.update');
         Route::post('/registration', [App\Http\Controllers\Frontend\RegistrationController::class, 'submit'])->name('registration.submit');
+        Route::get('/registration/success', [App\Http\Controllers\Frontend\RegistrationController::class, 'success'])->name('registration.success');
+        Route::get('/registration/payment/{id}', [App\Http\Controllers\Frontend\RegistrationController::class, 'payment'])->name('registration.payment');
+        Route::post('/registration/payment/{id}', [App\Http\Controllers\Frontend\RegistrationController::class, 'payment_submit'])->name('registration.payment.submit');
+        Route::get('/notification/seen', [App\Http\Controllers\Frontend\NotificationController::class, 'seen'])->name('notifications.seen');
     });
 });
 
@@ -40,7 +44,7 @@ Route::middleware('guest')->group(function () {
 Route::post('logout', [AuthController::class, 'logout'])->name('logout')->middleware('auth');
 
 
-Route::prefix('dashboard')->middleware(['auth', 'role:admin'])->group(function () {
+Route::prefix('dashboard')->middleware(['auth', 'can:admin'])->group(function () {
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
     Route::get('profile', [ProfileController::class, 'index'])->name('profile.index');
     Route::post('profile', [ProfileController::class, 'update'])->name('profile.update');
@@ -56,4 +60,11 @@ Route::prefix('dashboard')->middleware(['auth', 'role:admin'])->group(function (
     Route::get('registration-events', [RegistrationEventController::class, 'index'])->name('registration-events.index');
     Route::get('registration-events/update-status', [RegistrationEventController::class, 'update_status'])->name('registration-events.update-status');
     Route::get('registration-events/{id}', [RegistrationEventController::class, 'show'])->name('registration-events.show');
+    Route::get('registration-events/{id}/ticket', [RegistrationEventController::class, 'ticket'])->name('registration-events.ticket');
+    Route::post('registration-events/{id}/ticket', [RegistrationEventController::class, 'upload_ticket'])->name('registration-events.ticket-upload');
+});
+
+
+Route::get('test', function () {
+    return view('frontend.pages.test');
 });

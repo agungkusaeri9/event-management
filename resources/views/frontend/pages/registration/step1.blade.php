@@ -216,10 +216,17 @@
                 <div class="flex flex-row gap-2 mb-4">
                     <div class="w-1/2">
                         <label for="performance_type"
-                            class="block mb-2 text-sm font-medium text-white dark:text-white">Type
-                            Of Performance</label>
-                        <input type="text" id="performance_type" name="performance_type"
-                            class="bg-white border border-gray-300 text-black text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-white dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500" />
+                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Type of
+                            Performance</label>
+                        <select name="performance_type" id="performance_type"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                            <option selected>Choose a performance type</option>
+                            <option value="Folklore Dance Group">Folklore Dance Group</option>
+                            <option value="Folklore Music Group">Folklore Music Group</option>
+                            <option value="Mixed Folklore Ensemble">Mixed Folklore Ensemble</option>
+                            <option value="Floklore Instumental Group">Floklore Instumental Group</option>
+                            <option value="Folklore Customs Group">Folklore Customs Group</option>
+                        </select>
                         @error('performance_type')
                             <p class="text-red-400 text-xs mt-3">{{ $message }}</p>
                         @enderror
@@ -250,10 +257,14 @@
                 </div>
                 <div class="flex flex-row gap-2 mb-4">
                     <div class="w-1/2">
-                        <label for="music_type" class="block mb-2 text-sm font-medium text-white dark:text-white">Type
-                            Of Music</label>
-                        <input type="text" id="music_type" name="music_type"
-                            class="bg-white border border-gray-300 text-black text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-white dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500" />
+                        <label for="music_type"
+                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Type Of Music</label>
+                        <select name="music_type" id="music_type"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                            <option selected>Choose a type of music</option>
+                            <option value="Recorder">Recorder</option>
+                            <option value="Live Musix">Live Musix</option>
+                        </select>
                         @error('music_type')
                             <p class="text-red-400 text-xs mt-3">{{ $message }}</p>
                         @enderror
@@ -282,20 +293,51 @@
             <!-- SECTION 4 -->
             <div id="section4" class="step hidden">
                 <h2 class="text-white text-lg font-semibold mb-4">Step 4: Registration Summary</h2>
-                <div class="flex w-fullborder-4  justify-center">
-                    <div>
-                        <h2 class="text-white text-lg mb-3 font-normal">Event Details</h2>
-                        <div class="flex gap-4 w-full">
-                            <div class="w-1/3">
-                                <img src="{{ asset('assets/img/example-image.jpg') }}" class="h-12 w-full"
-                                    alt="">
+                <div class="flex w-[50%] border-4 mx-auto">
+                    <div class="flex w-full">
+                        <div class="p-5 w-full">
+                            <h2 class="text-white text-lg mb-3 font-normal">Event Details</h2>
+                            <div class="flex gap-4 py-2">
+                                <div>
+                                    <img src="{{ asset('assets/img/example-image.jpg') }}"
+                                        class="h-13 border-2 object-cover w-full" alt="">
+                                </div>
+                                <div>
+                                    <h2 class="text-white">Event Name</h2>
+                                    <p class="text-xs text-white">Location</p>
+                                    <p class="text-xs text-white">Waktu</p>
+                                </div>
                             </div>
+                            <div class="border-t-2 border-dashed border-gray-400 my-4 w-full"></div>
                             <div>
-                                <h2 class="text-white">Event Name</h2>
-                                <p class="text-xs text-white">Location</p>
-                                <p class="text-xs text-white">Waktu</p>
+                                <h3 class="text-white text-lg font-normal mb-3">Order Summary</h3>
+                                <div class="flex justify-between">
+                                    <div class="text-sm text-left text-white">
+                                        Total Pax
+                                    </div>
+                                    <div class="text-sm text-left text-white" id="label_total_pax">
+                                        0
+                                    </div>
+                                </div>
+                                <div class="border-t-2 border-dashed border-gray-400 my-4 w-full"></div>
+                                <div class="flex justify-between">
+                                    <div class="text-sm text-left text-white">
+                                        Ticket Price
+                                    </div>
+                                    <div class="text-sm text-left text-white" id="label_ticket_price">
+                                        Rp. {{ number_format($event->fee, 0, ',', '.') }}
+                                    </div>
+                                </div>
+                                <div class="border-t-2 border-dashed border-gray-400 my-4 w-full"></div>
+                                <div class="flex justify-between">
+                                    <div class="text-sm text-left text-white">
+                                        Total
+                                    </div>
+                                    <div class="text-sm text-left text-white" id="label_total">
+                                        0
+                                    </div>
+                                </div>
                             </div>
-                            <div class="border-t border-white border-4 h-2"></div>
                         </div>
                     </div>
                 </div>
@@ -303,7 +345,7 @@
                     <button type="button"
                         class="px-6 py-2 bg-gray-400 text-white rounded-lg prevBtn">Previous</button>
                     <button type="submit"
-                        class="px-6 py-2 bg-green-500 text-white rounded-lg cursor-pointer">Submit</button>
+                        class="px-6 py-2 bg-[#001A3D] text-white rounded-lg cursor-pointer">Confirm</button>
                 </div>
             </div>
         </form>
@@ -312,15 +354,35 @@
     @push('scripts')
         <script>
             let qty = 1;
+            let price = '{{ $event->fee }}';
+
+            function formatRupiah(angka) {
+                return new Intl.NumberFormat("id-ID", {
+                    style: "currency",
+                    currency: "IDR",
+                    minimumFractionDigits: 0,
+                }).format(angka);
+            }
+
+            function showLabel() {
+                $('#label_total_pax').html(`${qty} pax`);
+                let total = qty * price
+                $('#label_total').html(formatRupiah(total));
+            }
+
+            showLabel();
+
             $('#btnPlus').click(function() {
                 qty++;
                 $('#qty').val(qty);
                 $('#displayQty').html(qty);
+                showLabel();
             })
             $('#btnMinus').click(function() {
                 qty--;
                 $('#qty').val(qty);
                 $('#displayQty').html(qty);
+                showLabel();
             })
 
             let currentStep = 0;

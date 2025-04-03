@@ -274,31 +274,52 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="col-12">
-                                    <a href="{{ route('registration-events.update-status', [
-                                        'id' => $item->id,
-                                        'status' => 1,
-                                    ]) }}"
-                                        class="btn btn-warning mr-2">
-                                        Payment Confirmation
-                                    </a>
-                                    <a href="{{ route('registration-events.update-status', [
-                                        'id' => $item->id,
-                                        'status' => 2,
-                                    ]) }}"
-                                        class="btn btn-success mr-2">
-                                        Approved
-                                    </a>
-                                    <a href="{{ route('registration-events.update-status', [
-                                        'id' => $item->id,
-                                        'status' => 3,
-                                    ]) }}"
-                                        class="btn btn-danger mr-2">
-                                        Reject
-                                    </a>
+                            <div class="row mb-4">
+                                <div class="col-md">
+                                    <div class="mb-2">Proof of Payment</div>
+                                    @if ($item->proof_of_payment)
+                                        <a href="{{ $item->proof_of_payment() }}" target="_blank">
+                                            <img src="{{ $item->proof_of_payment() }}" alt=""
+                                                class="img-fluid" style="max-height: 300px">
+                                        </a>
+                                    @else
+                                        <span class="text-danger">No Proof of Payment</span>
+                                    @endif
                                 </div>
                             </div>
+                            <div class="row mb-4">
+                                <div class="col-md">
+                                    <div class="mb-2">Status</div>
+                                    {!! $item->status() !!}
+                                </div>
+                            </div>
+                            @if ($item->status != 2)
+                                <div class="row">
+                                    <div class="col-12">
+                                        <a href="{{ route('registration-events.update-status', [
+                                            'id' => $item->id,
+                                            'status' => 1,
+                                        ]) }}"
+                                            class="btn btn-warning mr-2">
+                                            Payment Confirmation
+                                        </a>
+                                        <a href="{{ route('registration-events.update-status', [
+                                            'id' => $item->id,
+                                            'status' => 2,
+                                        ]) }}"
+                                            class="btn btn-success mr-2">
+                                            Approved
+                                        </a>
+                                        <a href="{{ route('registration-events.update-status', [
+                                            'id' => $item->id,
+                                            'status' => 3,
+                                        ]) }}"
+                                            class="btn btn-danger mr-2">
+                                            Reject
+                                        </a>
+                                    </div>
+                                </div>
+                            @endif
                         </div>
                     </div>
                 </x-slot>

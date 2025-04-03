@@ -65,42 +65,24 @@
         <div class="w-full">
             <h1 class="text-black mb-3 text-md font-normal">My E-Ticket</h1>
             <div class="grid grid-cols-3 gap-4">
-                <div>
-                    <a href="" class="hover:bg-gray-100">
-                        <img src="{{ asset('assets/frontend/images/Copy of ABC_1375.jpg') }}"
-                            class="w-full mb-2 h-15 object-cover rounded-xl" alt="">
-                        <p class="text-xs">Nusantara International Folklore Festival</p>
-                    </a>
-                </div>
-                <div>
-                    <a href="" class="hover:bg-gray-100">
-                        <img src="{{ asset('assets/frontend/images/Copy of ABC_1375.jpg') }}"
-                            class="w-full mb-2 h-15 object-cover rounded-xl" alt="">
-                        <p class="text-xs">Nusantara International Folklore Festival</p>
-                    </a>
-                </div>
-                <div>
-                    <a href="" class="hover:bg-gray-100">
-                        <img src="{{ asset('assets/frontend/images/Copy of ABC_1375.jpg') }}"
-                            class="w-full mb-2 h-15 object-cover rounded-xl" alt="">
-                        <p class="text-xs">Nusantara International Folklore Festival</p>
-                    </a>
-                </div>
-                <div>
-                    <a href="" class="hover:bg-gray-100">
-                        <img src="{{ asset('assets/frontend/images/Copy of ABC_1375.jpg') }}"
-                            class="w-full mb-2 h-15 object-cover rounded-xl" alt="">
-                        <p class="text-xs">Nusantara International Folklore Festival</p>
-                    </a>
-                </div>
-
-                <div>
-                    <a href="" class="hover:bg-gray-100">
-                        <img src="{{ asset('assets/frontend/images/Copy of ABC_1375.jpg') }}"
-                            class="w-full mb-2 h-15 object-cover rounded-xl" alt="">
-                        <p class="text-xs">Nusantara International Folklore Festival</p>
-                    </a>
-                </div>
+                @foreach ($items as $item)
+                    <div>
+                        @if ($item->ticket_file)
+                            <a href="{{ asset('storage/' . $item->ticket_file) }}" target="_blank"
+                                class="hover:bg-gray-100">
+                                <img src="{{ $item->event->image() }}" class="w-full mb-2 h-20 object-cover rounded-xl"
+                                    alt="">
+                                <p class="text-xs">{{ $item->event->name }}</p>
+                            </a>
+                        @else
+                            <a href="#" onclick="alert('Ticket file not found')" class="hover:bg-gray-100">
+                                <img src="{{ $item->event->image() }}" class="w-full mb-2 h-20 object-cover rounded-xl"
+                                    alt="">
+                                <p class="text-xs">{{ $item->event->name }}</p>
+                            </a>
+                        @endif
+                    </div>
+                @endforeach
             </div>
         </div>
     </div>

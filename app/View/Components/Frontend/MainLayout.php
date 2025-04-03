@@ -11,9 +11,10 @@ class MainLayout extends Component
     /**
      * Create a new component instance.
      */
-    public function __construct()
+    public $bg;
+    public function __construct($bg = true)
     {
-        //
+        $this->bg = $bg;
     }
 
     /**
@@ -21,6 +22,8 @@ class MainLayout extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.frontend.main-layout');
+        return view('components.frontend.main-layout', [
+            'bg' => $this->bg
+        ]);
     }
 }

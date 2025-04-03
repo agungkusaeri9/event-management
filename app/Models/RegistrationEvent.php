@@ -16,7 +16,7 @@ class RegistrationEvent extends Model
             return '<span class="badge badge-secondary">Waiting</span>';
         } else if ($this->status == 1) {
             return '<span class="badge badge-warning">Payment Confirmation</span>';
-        } else   if ($this->status == 2) {
+        } else if ($this->status == 2) {
             return '<span class="badge badge-success">Approved</span>';
         } else {
             return '<span class="badge badge-danger">Rejected</span>';
@@ -31,5 +31,14 @@ class RegistrationEvent extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function proof_of_payment()
+    {
+        if ($this->proof_of_payment) {
+            return asset('storage/' . $this->proof_of_payment);
+        } else {
+            return "";
+        }
     }
 }

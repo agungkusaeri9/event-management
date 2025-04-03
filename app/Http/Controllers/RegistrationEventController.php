@@ -35,4 +35,29 @@ class RegistrationEventController extends Controller
         ]);
         return redirect()->back()->with('success', 'Status updated successfully');
     }
+
+    public function ticket($id)
+    {
+        $item = RegistrationEvent::with(['event', 'user'])->findOrFail($id);
+        return view('pages.registration-event.ticket', [
+            'title' => 'Ticket Registration Event',
+            'item' => $item,
+        ]);
+    }
+
+    public function upload_ticket($id)
+    {
+        request()->validate([
+            'file' => ['required', 'mimes:pdf']
+        ]);
+
+
+        $item = RegistrationEvent::with(['event', 'user'])->findOrFail($id);
+
+        $item->update([
+            'ticket_file' => request()->file('file')->store('ticket', 'public')
+        ]);
+
+        return redirect()->back()->with('success', 'Ticket uploaded successfully');
+    }
 }

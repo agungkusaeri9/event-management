@@ -1,9 +1,9 @@
 <div class="bg-black h-50 flex flex-row p-8 gap-20">
     <div class="w-1/2">
         <div class="flex gap-4 items-center">
-            <img src="{{ $profile->image() }}" class="h-40" alt="">
+            <img src="{{ $profile ? $profile->image() : '' }}" class="h-40" alt="">
             <div class="align-self-center items-center  w-2/3">
-                <p class="text-white text-justify text-xs font-light">{{ $profile->description }}</p>
+                <p class="text-white text-justify text-xs font-light">{{ $profile ? $profile->description : '' }}</p>
             </div>
         </div>
     </div>
@@ -23,7 +23,7 @@
                             </g>
                         </svg>
                     </div>
-                    <p class="text-white text-xs align-middle items-center">{{ $profile->email }}</p>
+                    <p class="text-white text-xs align-middle items-center">{{ $profile ? $profile->email : '' }}</p>
                 </li>
                 <li class="flex flex-row gap-4 items-center mb-2">
                     <div>
@@ -38,7 +38,7 @@
                             </g>
                         </svg>
                     </div>
-                    <p class="text-white text-xs align-middle items-center">{{ $profile->address }}</p>
+                    <p class="text-white text-xs align-middle items-center">{{ $profile ? $profile->address : '' }}</p>
                 </li>
                 <li class="flex flex-row gap-4 items-center mb-2">
                     <div>
@@ -56,14 +56,15 @@
                             </g>
                         </svg>
                     </div>
-                    <p class="text-white text-xs align-middle items-center">{{ $profile->phone_number }}</p>
+                    <p class="text-white text-xs align-middle items-center">{{ $profile ? $profile->phone_number : '' }}
+                    </p>
                 </li>
             </ul>
         </div>
         <div>
             <h2 class="text-md text-center text-white font-bold">Connect with us <br> throught or socials!</h2>
             <div class="flex gap-4 justify-center mt-5">
-                <a href="{{ $profile->instagram }}" target="_blank">
+                <a href="{{ $profile ? $profile->instagram : '' }}" target="_blank">
                     <svg width="30px" height="30px" viewBox="0 0 24 24" fill="none"
                         xmlns="http://www.w3.org/2000/svg">
                         <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
@@ -81,7 +82,7 @@
                         </g>
                     </svg>
                 </a>
-                <a href="{{ $profile->youtube }}" target="_blank">
+                <a href="{{ $profile ? $profile->youtube : '' }}" target="_blank">
                     <svg width="30px" height="30px" viewBox="0 0 24 24" fill="none"
                         xmlns="http://www.w3.org/2000/svg" stroke="#ffffff">
                         <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
