@@ -13,6 +13,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RegistrationEventController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
+use App\Http\Middleware\EnsureEmailIsVerified;
 use Illuminate\Support\Facades\Route;
 
 Route::name('frontend.')->group(function () {
@@ -25,7 +26,13 @@ Route::name('frontend.')->group(function () {
     Route::get('/registration', [App\Http\Controllers\Frontend\RegistrationController::class, 'index'])->name('registration');
     Route::get('/previous-events/{slug}', [App\Http\Controllers\Frontend\PreviousEventController::class, 'show'])->name('previous-events.show');
 
-    Route::prefix('user')->middleware(['auth'])->group(function () {
+
+    Route::get('/verify-email/{token}', [App\Http\Controllers\AuthController::class, 'verifyEmail']);
+    Route::get('/verify', [App\Http\Controllers\AuthController::class, 'verify'])->name('verify');
+    Route::post('/verify', [App\Http\Controllers\AuthController::class, 'retoken'])->name('retoken');
+
+
+    Route::prefix('user')->middleware(['auth', EnsureEmailIsVerified::class])->group(function () {
         Route::get('/profile', [App\Http\Controllers\Frontend\ProfileController::class, 'index'])->name('profile.index');
         Route::patch('/profile', [App\Http\Controllers\Frontend\ProfileController::class, 'update'])->name('profile.update');
         Route::post('/registration', [App\Http\Controllers\Frontend\RegistrationController::class, 'submit'])->name('registration.submit');

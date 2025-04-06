@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\EmailVerification;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class AuthController extends Controller
 {
@@ -25,7 +27,16 @@ class AuthController extends Controller
             $credentials = request()->only('email', 'password');
             $remember = request()->has('remember');
 
+
+
             if (Auth::attempt($credentials, $remember)) {
+
+                if (Auth::user()->email_verified_at == null) {
+                    return redirect()->route('frontend.verify', [
+                        'email' => Auth::user()->email
+                    ]);
+                    Auth::logout();
+                }
                 return redirect()->intended('dashboard');
             } else {
                 return redirect()->route('login')->with('error', 'Invalid email or password');
@@ -69,7 +80,19 @@ class AuthController extends Controller
             $user = User::create($data);
             $user->assignRole('user');
 
-            return redirect()->route('login')->with('success', 'Register successfully. Please login');
+
+            $token = \Str::random(64);
+            EmailVerification::create([
+                'user_id' => $user->id,
+                'token' => $token,
+            ]);
+
+            // Kirim email
+            Mail::to($user->email)->send(new \App\Mail\VerifyEmail($user, $token));
+
+            return redirect()->route('frontend.verify', [
+                'email' => $user->email
+            ]);
         } catch (\Throwable $th) {
             //throw $th;
             return redirect()->back()->with('error', $th->getMessage());
@@ -82,4 +105,59 @@ class AuthController extends Controller
             'title' => 'Forgot Password'
         ]);
     }
+
+    public function verifyEmail($token)
+    {
+        $verification = EmailVerification::where('token', $token)->first();
+
+        if (!$verification) {
+            return redirect('/login')->with('error', 'Token tidak valid atau sudah digunakan.');
+        }
+
+        $user = $verification->user;
+        $user->email_verified_at = now();
+        $user->save();
+
+        $verification->delete();
+
+        return redirect('/login')->with('success', 'Email berhasil diverifikasi. Silakan login.');
+    }
+
+    public function verify()
+    {
+        $email = request('email');
+        return view('auth.pages.verify', [
+            'title' => 'Verify',
+            'email' => $email
+        ]);
+    }
+
+    public function retoken()
+    {
+        $email = request('email');
+        $emailVerify = EmailVerification::whereHas('user', function ($query) use ($email) {
+            $query->where('email', $email);
+        })->first();
+
+        if (!$emailVerify) {
+            return redirect()->route('frontend.verify')->with('error', 'Email not found.');
+        }
+
+        $user = $emailVerify->user;
+        $emailVerify->delete();
+
+        $token = \Str::random(64);
+        EmailVerification::create([
+            'user_id' => $user->id,
+            'token' => $token,
+        ]);
+
+        // Kirim email
+        Mail::to($user->email)->send(new \App\Mail\VerifyEmail($user, $token));
+
+        return redirect()->route('frontend.verify', [
+            'email' => $user->email
+        ])->with('success', 'Email has been sent.  Please check your email.');
+    }
+
 }

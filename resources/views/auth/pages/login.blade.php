@@ -41,7 +41,7 @@
                                     <div class='invalid-feedback'>{{ $message }}</div>
                                 @enderror
                             </div>
-                            <a href="{{ route('forgot-password') }}">Forgot Password?</a>
+                            {{-- <a href="{{ route('forgot-password') }}">Forgot Password?</a> --}}
 
                             <div class='form-group mb-3 text-center'>
                                 <button class="btn btn-black rounded px-5 py-2">Login</button>
