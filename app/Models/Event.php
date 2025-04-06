@@ -53,6 +53,17 @@ class Event extends Model
             }
         }
     }
+    public function formatDateOnly()
+    {
+
+        if ($this->date && $this->end_date) {
+            if ($this->date->translatedFormat('d') === $this->end_date->translatedFormat('d')) {
+                return $this->date->translatedFormat('F, d ') . ' - ' . $this->end_date->translatedFormat('d, Y');
+            } else {
+                return $this->date->translatedFormat('F, d ') . ' - ' . $this->end_date->translatedFormat('d, Y');
+            }
+        }
+    }
 
     protected static function boot()
     {

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use App\Models\CompanyProfile;
+use App\Models\PreviousEvent;
 use Illuminate\Http\Request;
 
 class AboutController extends Controller
@@ -12,6 +13,7 @@ class AboutController extends Controller
     {
         $title = "About Us";
         $item = CompanyProfile::first();
-        return view('frontend.pages.about', compact('title', 'item'));
+        $previous_events = PreviousEvent::latest()->limit(6)->get();
+        return view('frontend.pages.about', compact('title', 'item', 'previous_events'));
     }
 }

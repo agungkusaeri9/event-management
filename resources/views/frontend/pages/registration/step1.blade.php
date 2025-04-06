@@ -303,9 +303,9 @@
                                         class="h-13 border-2 object-cover w-full" alt="">
                                 </div>
                                 <div>
-                                    <h2 class="text-white">Event Name</h2>
-                                    <p class="text-xs text-white">Location</p>
-                                    <p class="text-xs text-white">Waktu</p>
+                                    <h2 class="text-white">{{ $event->name }}</h2>
+                                    <p class="text-xs text-white">{{ $event->location }}</p>
+                                    <p class="text-xs text-white">{{ $event->formatDate() }}</p>
                                 </div>
                             </div>
                             <div class="border-t-2 border-dashed border-gray-400 my-4 w-full"></div>

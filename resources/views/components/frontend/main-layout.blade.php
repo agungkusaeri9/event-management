@@ -14,13 +14,13 @@
 <body>
 
     <x-frontend.navbar />
-    {{-- <div class="p-20 min-h-screen" style="background: url('{{ asset('assets/frontend/images/background-audhi.jpg') }}')"> --}}
-    <div class="p-20 min-h-screen"
-        @if ($bg === true) style="background: url('{{ asset('assets/frontend/images/background-audhi.jpg') }}')" @endif>
-        <div class="container mx-auto ">
+    <div class="@if ($fluid === true) p-20 @endif min-h-screen"
+        @if ($bg === true) style="background: url('{{ asset('assets/frontend/images/background-audhi.jpg') }}') no-repeat center center; background-size: cover;" @endif>
+        <div class="@if ($fluid === true) container @endif mx-auto">
             {{ $slot }}
         </div>
     </div>
+
     <x-frontend.footer />
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"
         integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>

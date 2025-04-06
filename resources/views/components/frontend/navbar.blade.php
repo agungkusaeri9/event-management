@@ -25,7 +25,7 @@
                 <li>
                     <a href="{{ route('frontend.home') }}"
                         class="block text-sm py-2 px-3 text-white rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">
-                        Home</a>
+                        What's New</a>
                 </li>
                 <li>
                     <a href="{{ route('frontend.event.index') }}"
@@ -42,7 +42,7 @@
                         class="block text-sm py-2 px-3 text-white rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">FAQs</a>
                 </li>
                 <li>
-                    <a href="#"
+                    <a href="{{ route('frontend.contact') }}"
                         class="block text-sm py-2 px-3 text-white rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Contact
                         Us</a>
                 </li>
@@ -61,14 +61,14 @@
 
                         <!-- Card List Notification -->
                         <div id="notifCard"
-                            class="absolute left-0 w-96 p-4 bg-white border border-gray-200 rounded-lg shadow-lg dark:bg-gray-700 dark:border-gray-600 hidden">
-                            <h3 class="font-normal mb-3 text-gray-900 dark:text-white text-center">Notifications</h3>
+                            class="absolute left-0 w-96 p-4 bg-white border border-gray-200 rounded-lg shadow-lg hidden">
+                            <h3 class="font-normal mb-3  text-center">Notifications</h3>
 
                             <ul id="notifList"
                                 class="divide-y divide-gray-200 dark:divide-gray-600 max-h-[600px] overflow-y-auto">
                                 @foreach ($notifications as $notification)
                                     <li
-                                        class="p-4 mb-3 hover:bg-gray-100 @if ($notification->status == 0) bg-gray-200 rounded-2xl @endif">
+                                        class="p-4 mb-3 hover:bg-gray-100 @if ($notification->status == 0) bg-gray-100 rounded-2xl @endif">
                                         <h4 class="text-sm font-bold">{{ $notification->title }}</h4>
                                         <p class="text-xs text-gray-500">{{ $notification->description }}</p>
                                         <div class="block mt-1 text-xs text-gray-400">

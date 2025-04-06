@@ -22,8 +22,8 @@ class Navbar extends Component
      */
     public function render(): View|Closure|string
     {
-        $notifications = Notification::where('user_id', auth()->user()->id)->latest()->get();
-        $notifications_seen = Notification::where('user_id', auth()->user()->id)->where('status', 0)->latest()->get();
+        $notifications = auth()->id() ? Notification::where('user_id', auth()->user()->id)->latest()->get() : [];
+        $notifications_seen = auth()->id() ? Notification::where('user_id', auth()->user()->id)->where('status', 0)->latest()->get() : [];
         return view('components.frontend.navbar', [
             'notifications' => $notifications,
             'notifications_seen' => $notifications_seen,

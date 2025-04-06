@@ -5,8 +5,8 @@
             @method('patch')
             <div class="flex justify-between items-center mb-8">
                 <div>
-                    <h1 class="font-semibold text-xl mb-3">Hello, Audhi Nata</h1>
-                    <p class="text-sm font-light text-gray-500">audi@gmail.com</p>
+                    <h1 class="font-semibold text-xl mb-3">Hello, {{ auth()->user()->name }}</h1>
+                    <p class="text-sm font-light text-gray-500">{{ auth()->user()->email }}</p>
                 </div>
                 <div>
                     <button type="submit" class="bg-black  text-white px-4 py-2 rounded-md">Edit</button>
@@ -65,7 +65,7 @@
         <div class="w-full">
             <h1 class="text-black mb-3 text-md font-normal">My E-Ticket</h1>
             <div class="grid grid-cols-3 gap-4">
-                @foreach ($items as $item)
+                @forelse ($items as $item)
                     <div>
                         @if ($item->ticket_file)
                             <a href="{{ asset('storage/' . $item->ticket_file) }}" target="_blank"
@@ -82,7 +82,9 @@
                             </a>
                         @endif
                     </div>
-                @endforeach
+                @empty
+                    <p class="text-sm text-gray-500 text-left">No ticket found</p>
+                @endforelse
             </div>
         </div>
     </div>

@@ -13,4 +13,19 @@ class PreviousEvent extends Model
     {
         return asset('storage/' . $this->image);
     }
+
+    public function youtubeUrl()
+    {
+        if (!$this->link_youtube) {
+            return null;
+        }
+        preg_match('/(?:v=|\/)([0-9A-Za-z_-]{11})/', $this->link_youtube, $matches);
+
+        if (!empty($matches[1])) {
+            return 'https://www.youtube.com/embed/' . $matches[1];
+        }
+
+        return null;
+    }
+
 }

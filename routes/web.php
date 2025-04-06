@@ -21,7 +21,10 @@ Route::name('frontend.')->group(function () {
     Route::get('/events/{slug}', [App\Http\Controllers\Frontend\EventController::class, 'show'])->name('event.show');
     Route::get('/faq', [App\Http\Controllers\Frontend\FaqController::class, 'index'])->name('faq.index');
     Route::get('/about', [App\Http\Controllers\Frontend\AboutController::class, 'index'])->name('about');
+    Route::get('/contact', [App\Http\Controllers\Frontend\ContactController::class, 'index'])->name('contact');
     Route::get('/registration', [App\Http\Controllers\Frontend\RegistrationController::class, 'index'])->name('registration');
+    Route::get('/previous-events/{slug}', [App\Http\Controllers\Frontend\PreviousEventController::class, 'show'])->name('previous-events.show');
+
     Route::prefix('user')->middleware(['auth'])->group(function () {
         Route::get('/profile', [App\Http\Controllers\Frontend\ProfileController::class, 'index'])->name('profile.index');
         Route::patch('/profile', [App\Http\Controllers\Frontend\ProfileController::class, 'update'])->name('profile.update');
