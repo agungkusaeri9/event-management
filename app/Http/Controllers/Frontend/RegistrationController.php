@@ -47,14 +47,14 @@ class RegistrationController extends Controller
             $data['price'] = $event->fee;
             $data['total'] = $event->fee * request('pax_total');
             $RegistrationEvent = RegistrationEvent::create($data);
-            $data_notification = [
-                'title' => $event->name . ' Payment Infomation',
-                'description' => 'Your registration has been aproved. You can now continue to payment.',
-                'user_id' => auth()->user()->id,
-                'link' => route('frontend.registration.payment', $RegistrationEvent->id),
-                'type' => 'payment'
-            ];
-            Notification::create($data_notification);
+            // $data_notification = [
+            //     'title' => $event->name . ' Payment Infomation',
+            //     'description' => 'Your registration has been aproved. You can now continue to payment.',
+            //     'user_id' => auth()->user()->id,
+            //     'link' => route('frontend.registration.payment', $RegistrationEvent->id),
+            //     'type' => 'payment'
+            // ];
+            // Notification::create($data_notification);
             return redirect()->route('frontend.registration.success')->with('success', 'Event Registered Successfully.');
         } catch (\Throwable $th) {
             throw $th;
@@ -84,17 +84,9 @@ class RegistrationController extends Controller
         $registration = RegistrationEvent::with(['event'])->where('user_id', auth()->id())->where('id', $id)->firstOrFail();
 
         $registration->update([
-            'proof_of_payment' => request()->file('file')->store('registration', 'public'),
-            'status' => 1
+            'proof_of_payment' => request()->file('file')->store('registration', 'public')
         ]);
 
-        $data_notification = [
-            'title' => $registration->event->name,
-            'description' => 'Thankyou for payment. You can now see your E-Ticket on your profile.',
-            'user_id' => auth()->user()->id,
-            'type' => 'proof of payment'
-        ];
-        Notification::create($data_notification);
 
         return view('frontend.pages.registration.payment-success')->with('success', 'Event Registered Successfully');
     }

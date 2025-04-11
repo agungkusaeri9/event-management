@@ -17,6 +17,13 @@ class AuthController extends Controller
         ]);
     }
 
+    public function a_login()
+    {
+        return view('auth.pages.a_login', [
+            'title' => 'Login'
+        ]);
+    }
+
     public function login_process()
     {
         request()->validate([
@@ -27,8 +34,6 @@ class AuthController extends Controller
             $credentials = request()->only('email', 'password');
             $remember = request()->has('remember');
 
-
-
             if (Auth::attempt($credentials, $remember)) {
 
                 if (Auth::user()->email_verified_at == null) {
@@ -36,6 +41,11 @@ class AuthController extends Controller
                         'email' => Auth::user()->email
                     ]);
                     Auth::logout();
+                }
+                if (Auth::user()->hasRole('admin')) {
+                    return redirect()->intended('dashboard');
+                } else {
+                    return redirect()->intended('/');
                 }
                 return redirect()->intended('dashboard');
             } else {
@@ -159,5 +169,4 @@ class AuthController extends Controller
             'email' => $user->email
         ])->with('success', 'Email has been sent.  Please check your email.');
     }
-
 }

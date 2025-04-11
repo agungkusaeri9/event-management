@@ -293,7 +293,7 @@
                                     {!! $item->status() !!}
                                 </div>
                             </div>
-                            @if ($item->status != 2)
+                            @if ($item->status)
                                 <div class="row">
                                     <div class="col-12">
                                         <a href="{{ route('registration-events.update-status', [

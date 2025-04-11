@@ -51,6 +51,11 @@ Route::middleware('guest')->group(function () {
     Route::get('forgot-password', [AuthController::class, 'forgot_password'])->name('forgot-password');
 });
 
+Route::prefix('dashboard')->middleware('guest')->group(function () {
+    Route::get('login', [AuthController::class, 'a_login'])->name('a_login');
+    Route::post('login', [AuthController::class, 'login_process'])->name('login.process');
+});
+
 Route::post('logout', [AuthController::class, 'logout'])->name('logout')->middleware('auth');
 
 
