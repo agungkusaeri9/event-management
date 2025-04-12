@@ -1,4 +1,4 @@
-<x-frontend.main-layout>
+<x-frontend.main-layout title="{{ $title ?? '' }}">
     <a href="{{ route('frontend.home') }}" class="mb-10">
         <svg fill="#ffffff" width="34px" height="34px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"
             stroke="#ffffff">

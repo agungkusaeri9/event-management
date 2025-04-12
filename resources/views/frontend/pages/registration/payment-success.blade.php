@@ -1,4 +1,4 @@
-<x-frontend.main-layout bg="false">
+<x-frontend.main-layout bg="false" title="{{ $title ?? '' }}">
 
     <div class="flex  justify-center items-center h-screen">
         <div class="w-1/3">

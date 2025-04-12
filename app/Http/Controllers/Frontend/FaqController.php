@@ -11,6 +11,7 @@ class FaqController extends Controller
     public function index()
     {
         $items = Faq::orderBy('question', 'ASC')->get();
-        return view('frontend.pages.faq', compact('items'));
+        $title = 'Faq';
+        return view('frontend.pages.faq', compact('items', 'title'));
     }
 }

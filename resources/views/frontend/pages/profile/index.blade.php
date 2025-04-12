@@ -1,4 +1,4 @@
-<x-frontend.main-layout>
+<x-frontend.main-layout title="{{ $title ?? '' }}">
     <div class="bg-white px-10 rounded-lg p-10">
         <form action="{{ route('frontend.profile.update') }}" method="post">
             @csrf

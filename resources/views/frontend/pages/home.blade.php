@@ -1,4 +1,4 @@
-<x-frontend.main-layout fluid="true">
+<x-frontend.main-layout fluid="true" title="{{ $title ?? '' }}">
     @if ($event)
         <div class="min-h-[500px] items-center bg-cover brightness-90  bg-no-repeat flex justify-center -mb-10  mx-auto w-full"
             style="background-image:url({{ $event->image() }})">
@@ -25,8 +25,8 @@
 
     <div class="container p-20 mx-auto">
         <div class="text-left mt-[100px] text-white">
-            <h2 class="text-sm font-bold mb-5">Be Oart of Us</h2>
-            <p class="text-xs max-w-[50%] text-slate-300">
+            <h2 class="text-lg font-bold mb-5">Be Oart of Us</h2>
+            <p class="text-sm max-w-[50%] text-slate-300">
                 Are you a talented artist looking for an opportunity to showcase your skills? Our Festival is your
                 stage!
                 Whether you're a dancer, musician, or performer, this is your chance to captivate an audience and
@@ -39,8 +39,8 @@
 
             </div>
             <div class="text-right w-[90%]">
-                <h2 class="text-sm font-bold mb-5">Why You Need to Join</h2>
-                <p class="text-xs text-slate-300">
+                <h2 class="text-lg font-bold mb-5">Why You Need to Join</h2>
+                <p class="text-sm text-slate-300">
                     Showcase Your Talent; Perform in front of an engaged and enthusiastic audience who value cultural
                     expression.
                     Connect with a Global Community; Meet fellow performers, artists, and cultural enthusiasts from

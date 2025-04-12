@@ -7,6 +7,7 @@
     <!-- Contoh pakai Google Fonts: Poppins -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.css" rel="stylesheet" />
+    <title>{{ $title }}</title>
     @vite('resources/css/app.css')
     @stack('styles')
 </head>

@@ -12,11 +12,13 @@ class MainLayout extends Component
      * Create a new component instance.
      */
     public $bg;
+    public $title;
     public $fluid;
-    public function __construct($bg = true, $fluid = true)
+    public function __construct($bg = true, $fluid = true, $title = '')
     {
         $this->fluid = $fluid;
         $this->bg = $bg;
+        $this->title = $title;
     }
 
     /**
@@ -26,7 +28,8 @@ class MainLayout extends Component
     {
         return view('components.frontend.main-layout', [
             'bg' => $this->bg,
-            'fluid' => $this->fluid
+            'fluid' => $this->fluid,
+            'title' => $this->title
         ]);
     }
 }

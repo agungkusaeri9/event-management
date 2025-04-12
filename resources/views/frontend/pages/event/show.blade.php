@@ -1,4 +1,4 @@
-<x-frontend.main-layout>
+<x-frontend.main-layout title="{{ $title ?? '' }}">
     <a href="{{ route('frontend.event.index') }}" class="mb-10">
         <svg fill="#ffffff" width="34px" height="34px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"
             stroke="#ffffff">
@@ -70,7 +70,7 @@
         </div>
         <div>
             <h2 class="text-white mb-3">Event Information</h2>
-            <div class="mb-2 text-white dark:text-white text-xs">
+            <div class="mb-2 text-white dark:text-white text-sm">
                 {!! $item->description !!}
             </div>
         </div>

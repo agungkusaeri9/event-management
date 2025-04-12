@@ -1,6 +1,6 @@
 <footer class="main-footer">
     <div class="footer-left">
-        Copyright &copy; 2024 <div class="bullet"></div> Laravel Admin</a>
+        Copyright &copy; 2025 <div class="bullet"></div> Audhi</a>
     </div>
     <div class="footer-right">
 

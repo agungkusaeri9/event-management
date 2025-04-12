@@ -1,4 +1,4 @@
-<x-frontend.main-layout>
+<x-frontend.main-layout title="{{ $title ?? '' }}">
     <div class="">
         <h1 class="text-3xl font-bold text-center mb-12 text-white">CONTACT US</h1>
 

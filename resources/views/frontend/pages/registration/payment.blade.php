@@ -1,4 +1,4 @@
-<x-frontend.main-layout bg="false">
+<x-frontend.main-layout bg="false" title="{{ $title ?? '' }}">
     <div class="flex items-center gap-5 mb-5">
         <a href="{{ route('frontend.profile.index') }}" class="text-black">
             <svg fill="#000000" width="34px" height="34px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">

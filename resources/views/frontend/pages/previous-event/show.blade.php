@@ -1,4 +1,4 @@
-<x-frontend.main-layout fluid="true">
+<x-frontend.main-layout fluid="true" title="{{ $title ?? '' }}">
 
     <div class="mt-10">
         <div class="w-full relative border-2 border-red-700">

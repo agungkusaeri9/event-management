@@ -1,4 +1,4 @@
-<x-frontend.main-layout>
+<x-frontend.main-layout title="{{ $title ?? '' }}">
     <div class="flex flex-col gap-5 p-5">
         @if (session('success'))
             <div class="w-full rounded-xl p-4 bg-green-300 text-white">
