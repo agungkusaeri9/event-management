@@ -4,8 +4,42 @@
         <x-section-body>
             <x-section-card>
                 <x-slot name="header">
+                    <h4>Filter</h4>
+                </x-slot>
+                <x-slot name="body">
+                    <form action="{{ route('committees.index') }}" method="get">
+                        <div class='form-group row'>
+                            <div class="col-md">
+                                <label for='previous_event_id'>Prev Event</label>
+                                <select name='previous_event_id' id='previous_event_id'
+                                    class='form-control @error('previous_event_id') is-invalid @enderror'>
+                                    <option value='' @selected(request('previous_event_id') == null)>Committee Yayasan</option>
+                                    @foreach ($previous_events as $prev)
+                                        <option @selected($prev->id == request('previous_event_id')) value='{{ $prev->id }}'>
+                                            {{ $prev->name }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                                @error('previous_event_id')
+                                    <div class='invalid-feedback'>
+                                        {{ $message }}
+                                    </div>
+                                @enderror
+                            </div>
+                            <div class="col-md align-self-end">
+                                <button class="btn btn-primary py-2 px-5">Filter</button>
+                            </div>
+                        </div>
+                    </form>
+                </x-slot>
+            </x-section-card>
+            <x-section-card>
+                <x-slot name="header">
                     <h4>Committee</h4>
-                    <a href="{{ route('committees.create') }}" class="btn btn-primary btn-sm">Create
+                    <a href="{{ route('committees.create', [
+                        'previous_event_id' => request('previous_event_id'),
+                    ]) }}"
+                        class="btn btn-primary btn-sm">Create
                         Committee</a>
                 </x-slot>
                 <x-slot name="body">
@@ -30,7 +64,8 @@
                                     <td>{{ $item->text }}</td>
                                     <td>{{ $item->role }}</td>
                                     <td>
-                                        <a href="{{ route('committees.edit', $item->id) }}" class="btn btn-info btn-sm">
+                                        <a href="{{ route('committees.edit', $item->id) }}"
+                                            class="btn btn-info btn-sm">
                                             <i class="fas fa-edit"></i>
                                         </a>
                                         <x-delete-button :action="route('committees.destroy', $item->id)" :id="$item->id" class="d-inline"

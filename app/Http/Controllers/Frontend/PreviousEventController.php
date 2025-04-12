@@ -13,7 +13,7 @@ class PreviousEventController extends Controller
     {
         $item = PreviousEvent::where('slug', $slug)->firstOrFail();
         $title = 'Detail Event';
-        $committees = Committee::get();
+        $committees = Committee::where('previous_event_id', $item->id)->get();
         return view('frontend.pages.previous-event.show', compact('title', 'item', 'committees'));
     }
 }

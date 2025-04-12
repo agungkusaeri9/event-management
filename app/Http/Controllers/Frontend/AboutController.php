@@ -14,7 +14,7 @@ class AboutController extends Controller
     {
         $title = "About Us";
         $item = CompanyProfile::first();
-        $committees = Committee::whereNotNull('text')->get()->groupBy('role');
+        $committees = Committee::whereNull('previous_event_id')->get()->groupBy('role');
         // dd($committees);
         $previous_events = PreviousEvent::latest()->limit(6)->get();
         return view('frontend.pages.about', compact('title', 'item', 'previous_events', 'committees'));

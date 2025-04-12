@@ -37,16 +37,18 @@
                                 </div>
                             @enderror
                         </div>
-                        <div class='form-group mb-3'>
-                            <label for='text' class='mb-2'>Teks</label>
-                            <textarea name='text' id='text' cols='30' rows='3'
-                                class='form-control @error('text') is-invalid @enderror'>{{ $item->text ?? old('text') }}</textarea>
-                            @error('text')
-                                <div class='invalid-feedback'>
-                                    {{ $message }}
-                                </div>
-                            @enderror
-                        </div>
+                        @if (!$item->previous_event_id)
+                            <div class='form-group mb-3'>
+                                <label for='text' class='mb-2'>Teks</label>
+                                <textarea name='text' id='text' cols='30' rows='3'
+                                    class='form-control @error('text') is-invalid @enderror'>{{ $item->text ?? old('text') }}</textarea>
+                                @error('text')
+                                    <div class='invalid-feedback'>
+                                        {{ $message }}
+                                    </div>
+                                @enderror
+                            </div>
+                        @endif
                         <div class='form-group mb-3'>
                             <label for='image' class='mb-2'>Image</label>
                             <input type='file' name='image' id='image'

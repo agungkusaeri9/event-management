@@ -13,6 +13,7 @@ return new class extends Migration {
         Schema::create('committees', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->foreignId('previous_event_id')->nullable()->constrained('previous_events');
             $table->string('role')->nullable();
             $table->text('text')->nullable();
             $table->string('image');

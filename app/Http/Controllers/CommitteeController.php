@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Committee;
+use App\Models\PreviousEvent;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Storage;
@@ -11,10 +12,17 @@ class CommitteeController extends Controller
 {
     public function index()
     {
-        $items = Committee::get();
+        $previous_events = PreviousEvent::latest()->get();
+        $previous_event_id = request('previous_event_id', null);
+        if ($previous_event_id) {
+            $items = Committee::where('previous_event_id', $previous_event_id)->get();
+        } else {
+            $items = Committee::whereNull('previous_event_id')->get();
+        }
         return view('pages.committee.index', [
             'title' => 'Committee',
-            'items' => $items
+            'items' => $items,
+            'previous_events' => $previous_events
         ]);
     }
     public function create()
@@ -37,7 +45,9 @@ class CommitteeController extends Controller
             $data['image'] = request()->file('image')->store('committees', 'public');
             Committee::create($data);
             DB::commit();
-            return redirect()->route('committees.index')->with('success', 'Committee berhasil ditambahkan.');
+            return redirect()->route('committees.index', [
+                'previous_event_id' => request('previous_event_id')
+            ])->with('success', 'Committee berhasil ditambahkan.');
         } catch (\Throwable $th) {
             DB::rollBack();
             // throw $th;
@@ -47,7 +57,6 @@ class CommitteeController extends Controller
 
     public function edit($id)
     {
-
         $item = Committee::findOrFail($id);
         return view('pages.committee.edit', [
             'title' => 'Edit Committee',
@@ -72,7 +81,9 @@ class CommitteeController extends Controller
             }
             $item->update($data);
             DB::commit();
-            return redirect()->route('committees.index')->with('success', 'Committee berhasil diupdate.');
+            return redirect()->route('committees.index', [
+                'previous_event_id' => $item->previous_event_id
+            ])->with('success', 'Committee berhasil diupdate.');
         } catch (\Throwable $th) {
             DB::rollBack();
             // throw $th;
@@ -84,9 +95,12 @@ class CommitteeController extends Controller
     {
         DB::beginTransaction();
         try {
-            Committee::findOrFail($id)->delete();
+            $item = Committee::findOrFail($id);
+            $prev_id = $item->previous_event_id;
             DB::commit();
-            return redirect()->route('committees.index')->with('success', 'Committee berhasil dihapus');
+            return redirect()->route('committees.index', [
+                'previous_event_id' => $prev_id
+            ])->with('success', 'Committee berhasil dihapus');
         } catch (\Exception $e) {
             DB::rollBack();
             return redirect()->back()->with('error', $e->getMessage());

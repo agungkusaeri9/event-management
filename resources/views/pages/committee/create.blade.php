@@ -13,6 +13,7 @@
                 <x-slot name="body">
                     <form action="{{ route('committees.store') }}" method="post" enctype="multipart/form-data">
                         @csrf
+                        <input type="text" name="previous_event_id" value="{{ request('previous_event_id') }}" hidden>
                         <div class='form-group mb-3'>
                             <label for='name' class='mb-2'>Nama</label>
                             <input type='text' name='name' id='name'
@@ -33,16 +34,18 @@
                                 </div>
                             @enderror
                         </div>
-                        <div class='form-group mb-3'>
-                            <label for='text' class='mb-2'>Teks</label>
-                            <textarea name='text' id='text' cols='30' rows='3'
-                                class='form-control @error('text') is-invalid @enderror'>{{ old('text') }}</textarea>
-                            @error('text')
-                                <div class='invalid-feedback'>
-                                    {{ $message }}
-                                </div>
-                            @enderror
-                        </div>
+                        @if (request('previous_event_id') == null)
+                            <div class='form-group mb-3'>
+                                <label for='text' class='mb-2'>Teks</label>
+                                <textarea name='text' id='text' cols='30' rows='3'
+                                    class='form-control @error('text') is-invalid @enderror'>{{ old('text') }}</textarea>
+                                @error('text')
+                                    <div class='invalid-feedback'>
+                                        {{ $message }}
+                                    </div>
+                                @enderror
+                            </div>
+                        @endif
                         <div class='form-group mb-3'>
                             <label for='image' class='mb-2'>Image</label>
                             <input type='file' name='image' id='image'

@@ -30,6 +30,12 @@
                                     <td>{{ $item->name }}</td>
                                     <td>{{ $item->link_youtube }}</td>
                                     <td>
+                                        <a href="{{ route('committees.index', [
+                                            'previous_event_id' => $item->id,
+                                        ]) }}"
+                                            class="btn btn-secondary btn-sm">
+                                            <i class="fas fa-users"></i>
+                                        </a>
                                         <a href="{{ route('previous-events.edit', $item->id) }}"
                                             class="btn btn-info btn-sm">
                                             <i class="fas fa-edit"></i>
