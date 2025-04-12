@@ -7,7 +7,7 @@
                 <h1 class="text-white text-4xl font-bold">{{ $item->name }}</h1>
             </div>
         </div>
-        <div class="container p-20 text-white content">
+        <div class="container p-20 mx-auto text-white content">
             <div class="mb-10">
                 <h2 class="font-semibold text-3xl text-white">ABOUT THE FESTIVAL</h2>
                 <div class="text-white text-xs">{!! $item->description !!}</div>
@@ -24,28 +24,16 @@
             </div>
             <div class="text-center mt-[70px]">
                 <h2 class="font-semibold text-3xl text-white mb-[100px]">FESTIVAL COMMITTEES</h2>
-                <div class="grid grid-cols-3 gap-4 justify-center">
-                    <div class="text-center  flex flex-col items-center justify-center">
-                        <img src="{{ asset('assets/frontend/images/about1.png') }}" class="mb-4" alt="">
-                        <h3 class="font-bold text-xl">Didik Nini Thowok</h3>
-                        <p class="text-sm font-light">
-                            Steering Committeee
-                        </p>
-                    </div>
-                    <div class="text-center  flex flex-col items-center justify-center">
-                        <img src="{{ asset('assets/frontend/images/about2.png') }}" class="mb-4" alt="">
-                        <h3 class="font-bold text-xl">Dr. Ni Nyoman Sudewu</h3>
-                        <p class="text-sm font-light">
-                            Steering Committeee
-                        </p>
-                    </div>
-                    <div class="text-center  flex flex-col items-center justify-center">
-                        <img src="{{ asset('assets/frontend/images/about3.png') }}" class="mb-4" alt="">
-                        <h3 class="font-bold text-xl">Maria Darmaningsih</h3>
-                        <p class="text-sm font-light">
-                            Steering Committeee
-                        </p>
-                    </div>
+                <div class="grid grid-cols-6 gap-4 justify-center">
+                    @foreach ($committees as $committee)
+                        <div class="text-center  flex flex-col items-center justify-center">
+                            <img src="{{ $committee->image() }}" class="mb-4" alt="">
+                            <h3 class="font-bold text-xl">{{ $committee->name }}</h3>
+                            <p class="text-sm font-light">
+                                {{ $committee->role }}
+                            </p>
+                        </div>
+                    @endforeach
                 </div>
 
             </div>

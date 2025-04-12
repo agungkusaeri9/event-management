@@ -7,7 +7,7 @@
                 <!-- Kiri - Background -->
                 <div class="col-md-5 d-none d-md-block p-0">
                     <div
-                        style="background-image: url('{{ asset('assets/frontend/images/bg-auth.jpg') }}');
+                        style="background-image: url('{{ asset('assets/frontend/images/login-admin.jpg') }}');
                                 background-size: cover;
                                 background-position: center;
                                 height: 100%; width: 100%;">

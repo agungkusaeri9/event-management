@@ -23,7 +23,7 @@
         </div>
     @endif
 
-    <div class="container p-20">
+    <div class="container p-20 mx-auto">
         <div class="text-left mt-[100px] text-white">
             <h2 class="text-sm font-bold mb-5">Be Oart of Us</h2>
             <p class="text-xs max-w-[50%] text-slate-300">

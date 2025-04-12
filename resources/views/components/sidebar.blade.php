@@ -28,6 +28,7 @@
                      <span>Master</span></a>
                  <ul class="dropdown-menu">
                      <li><a class="nav-link" href="{{ route('faqs.index') }}">Faq</a></li>
+                     <li><a class="nav-link" href="{{ route('committees.index') }}">Committee</a></li>
                      <li><a class="nav-link" href="{{ route('users.index') }}">User</a></li>
                      <li><a class="nav-link" href="{{ route('company-profile.index') }}">Company Profile</a></li>
                  </ul>

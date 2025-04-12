@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CommitteeController;
 use App\Http\Controllers\CompanyProfileController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\EventController;
@@ -77,6 +78,7 @@ Route::prefix('dashboard')->middleware(['auth', 'can:admin'])->group(function ()
     Route::get('registration-events/{id}', [RegistrationEventController::class, 'show'])->name('registration-events.show');
     Route::get('registration-events/{id}/ticket', [RegistrationEventController::class, 'ticket'])->name('registration-events.ticket');
     Route::post('registration-events/{id}/ticket', [RegistrationEventController::class, 'upload_ticket'])->name('registration-events.ticket-upload');
+    Route::resource('committees', CommitteeController::class);
 });
 
 
